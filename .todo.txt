@@ -1,0 +1,1 @@
+(B) Fix imports argument recieves a sequence of imports and the function inserts formatted code
