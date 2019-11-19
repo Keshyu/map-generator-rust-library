@@ -1,0 +1,10 @@
+[package]
+name = "map_generator"
+version = "0.1.0"
+authors = ["Keshyu <asdfsdev264@gmail.com>"]
+edition = "2018"
+
+[dependencies]
+phf = { version = "0.8.0", features = ["macros"] }
+phf_codegen = "0.8.0"
+phf_shared = "0.8.0"
