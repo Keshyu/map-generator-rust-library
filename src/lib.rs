@@ -12,6 +12,7 @@ pub fn generate_map<Key>(
     key_type: &str,
     value_type: &str,
     map: &[(Key, &str)],
+    imports: Option<&str>,
 )
 where
     Key: Hash + PhfHash + Eq + FmtConst
@@ -19,14 +20,21 @@ where
     let path = Path::new(output_path);
     let mut file = BufWriter::new(File::create(&path).unwrap());
 
+    if let Some(imports) = imports {
+        writeln!(
+            &mut file,
+            "{}\n",
+            imports,
+        ).unwrap();
+    }
+
     write!(
         &mut file,
         "pub static {name}: ::phf::Map<{key}, {value}> = ",
         name = name,
         key = key_type,
         value = value_type,
-    )
-        .unwrap();
+    ).unwrap();
 
     let mut builder = phf_codegen::Map::new();
 
